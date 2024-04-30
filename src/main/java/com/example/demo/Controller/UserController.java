@@ -1,6 +1,6 @@
 package com.example.demo.Controller;
 import com.example.demo.model.User;
-import com.example.demo.repository.UserRepo;
+import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,9 +9,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")  // This defines a base URI for all methods in this controller
 public class UserController {
-    final UserRepo userRepo;
+    final UserRepository userRepo;
 
-    public UserController(UserRepo userRepo) {
+    public UserController(UserRepository userRepo) {
         this.userRepo = userRepo;
     }
 
@@ -29,6 +29,7 @@ public class UserController {
 
     @PutMapping("/update")
     public User updateUser(@RequestBody User user){
+
         return userRepo.updateUser(user);
     }
 
@@ -41,4 +42,23 @@ public class UserController {
     public List<User> getUsers(){
         return userRepo.allUsers();
     }
+
+    //deletes all users
+    @DeleteMapping("/deleteAll")
+    public String deleteAllUsers() {
+        return userRepo.deleteAll();
+    }
+
+    //delete
+    @DeleteMapping("/delete/{id}")
+    public String deleteById(@PathVariable int id){
+        return userRepo.deleteById(id);
+    }
+
+    //reset
+    @DeleteMapping("/reset")
+    public String resetUsers() {
+        return userRepo.resetUsersTable();
+    }
+
 }

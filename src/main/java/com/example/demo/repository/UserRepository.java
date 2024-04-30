@@ -10,4 +10,6 @@ public interface UserRepository {
     User getById(int id);
     String deleteById(int id);
     List<User> allUsers();
+    String deleteAll();
+    String resetUsersTable();
 }
