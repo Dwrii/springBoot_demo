@@ -11,6 +11,9 @@ public class User {
     private String password;
     private String email;
 
+    //empty constructor
+    public User(){
+    }
 
     public User(String name, String password, String email) {
         this.name = name;

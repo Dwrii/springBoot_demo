@@ -1,7 +1,7 @@
 package com.example.demo.Controller;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -61,4 +61,14 @@ public class UserController {
         return userRepo.resetUsersTable();
     }
 
+    // Inside UserController class
+    @GetMapping("/getByNameAndPassword")
+    public ResponseEntity<?> getUserByNameAndPassword(@RequestParam String name, @RequestParam String password) {
+        User user = userRepo.getByNameAndPassword(name, password);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
