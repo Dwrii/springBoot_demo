@@ -23,6 +23,7 @@ public class UserController {
 
    //creates a user
     @PostMapping("/add")
+    @CrossOrigin(origins = "http://localhost:3000")
     public User addUser(@RequestBody User user){
         return userRepo.saveUser(user);
     }
@@ -63,6 +64,7 @@ public class UserController {
 
     // Inside UserController class
     @GetMapping("/getByNameAndPassword")
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<?> getUserByNameAndPassword(@RequestParam String name, @RequestParam String password) {
         User user = userRepo.getByNameAndPassword(name, password);
         if (user != null) {

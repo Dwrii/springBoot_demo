@@ -63,13 +63,13 @@ public class UserRepo implements UserRepository {
     //delete
     public String deleteById(int id) {
         jdbcTemplate.update(DELETE_USER_BY_ID, id);
-        return "User got delete with id" + id;
+        return "Message: User got delete with id" + id;
     }
 
     //delete all
     public String deleteAll() {
         jdbcTemplate.update(DELETE_ALL);
-        return "all users in this table is deleted";
+        return "Message: all users in this table is deleted";
     }
 
     //creates a list
@@ -87,7 +87,7 @@ public class UserRepo implements UserRepository {
     public String resetUsersTable() {
         jdbcTemplate.execute("DROP TABLE IF EXISTS users");
         jdbcTemplate.execute("CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, password TEXT NOT NULL, email TEXT NOT NULL UNIQUE)");
-        return "all users are deleted and the table is reset";
+        return "Message: all users are deleted and the table is reset";
     }
 
     // Finds the user that matches the given name and password
